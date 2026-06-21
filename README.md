@@ -35,3 +35,34 @@ The objective of Phase 1 is to design a relational database system based on real
 - **Diagramming Tool:** Draw.io (XML-based `.drawio` vectors)
 - **Document Management:** Microsoft Word / Adobe PDF formats
 - **Database Modeling:** Crow's Foot Notation for relational schemas
+
+---
+
+## 📸 ERD Diagram
+
+The Entity-Relationship Diagram (Crow's Foot Notation) for the GreenPublic system:
+
+![ERD Diagram](digram2.png)
+
+---
+
+## Database Schema Summary
+
+The normalized schema consists of the following core entities:
+
+| Entity            | Primary Key           | Key Attributes                                             |
+|-------------------|-----------------------|------------------------------------------------------------|
+| Employee          | Employee_ID           | Name, IC_Number, Address, Phone, Basic_Salary, Hire_Date   |
+| Employee_Position | Employee_Position_ID  | SName, Description                                         |
+| Customer          | Customer_ID           | Name, Address, Phone, Membership_Date, Status              |
+| Order             | Order_ID              | Date, Payment_Type, Total_Amount, Status                   |
+| OrderProduct      | Product_ID + Order_ID | Line_Number, Quantity, Unit_Price, Total_Amount, Status     |
+| Product           | Product_ID            | Name, Type, Qty_On_Hand, Unit_Cost, Unit_Price, Inventory  |
+| VendorProduct     | VendorProduct_ID      | Vendor_ID (FK), Product_ID (FK), Quantity_Supplied         |
+| Vendor            | Vendor_ID             | Name, Address, Phone                                        |
+
+**Key Relationships:**
+- `Employee` (1,1) ↔ (1,M) `Employee_Position` — each employee is assigned one position
+- `Customer` (1,1) ↔ (1,M) `Order` — each customer places many orders
+- `Order` (1,1) ↔ (1,M) `OrderProduct` — each order lists many products
+- `Product` (M,M) ↔ `Vendor` via `VendorProduct` — products supplied by multiple vendors
