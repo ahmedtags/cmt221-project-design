@@ -1,0 +1,6 @@
+# Ignore temporary XML and drawio backup files
+*~
+~$*
+*.tmp
+*.bkp
+.dtmp
